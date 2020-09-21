@@ -19,3 +19,4 @@ console.log("가나다" + "라마바")
 let hello="안녕하세요?"
 console.log(hello[0])
 console.log(hello[1])
+

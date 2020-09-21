@@ -22,7 +22,7 @@ console.log(typeof(function(){}));      //function
 console.log(typeof({}));            //object
 console.log(typeof(alpha));          //undefinde */
 // 자료형 변환
-console.log(Number('273'));
+/* console.log(Number('273'));
 console.log(Number(true));
 console.log(Number('52.7'));
 
@@ -43,7 +43,7 @@ console.log("52"+"273");
 
 console.log(`52=="52":${52=="52"}`);
 console.log(`52==="52":${52==="52"}`);
-console.log();
+console.log();  
 console.log(`0=="":${0==""}`);
 console.log(`0==="":${0===""}`);
 
@@ -51,4 +51,15 @@ console.log(`0==="":${0===""}`);
 const constant ="변경할 수 없어요";
 //constant ="";
 
-console.log(constant)
+console.log(constant) */
+/* let number = 10;
+console.log(number++);
+console.log(number);
+console.log(++number);
+console.log(number); */
+let input = 32;
+if (input % 2 == 0){console.log("짝수입니다!")}
+if (input % 2 == 1){console.log("홀수입니다!")}
+let date = new Date();
+if(date.getHours () <12){console.log("오전입니다.");}
+else{console.log("오후입니다.");}
