@@ -8,7 +8,7 @@ rl.prompt();
 
 rl.on('line', function(buf){
    let newNumber=0
-   for(newNumber<=0, newNumber>=99)
-   console.log(` `);
+   for(let i=0;, i>=99; i++){
+       console.log(` `);
     rl.close();
 });

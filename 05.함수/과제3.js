@@ -5,6 +5,6 @@ for (let hour=0; hour<=23; hour++){
         let time = hour+ ':' + min;
         if (time.indexOf('3') >=0)
         total += 60;
-    }
+    } 
 }
 console.log(total)

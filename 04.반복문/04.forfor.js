@@ -6,3 +6,4 @@ for (let i in array) {
 for (let element of array){
     console.log(element);
 }
+console.log(array)
