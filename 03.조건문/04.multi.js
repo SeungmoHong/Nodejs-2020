@@ -1,11 +1,10 @@
 // 사용자가 입력한 글을 받는 방법
 const readline = require('readline');
 const rl = readline.createInterface({
-    input:process.stdin,
-    output:process.studout
+    input : process.stdin,
+    output : process.stdout
 });
-
-rl.setPrompt('정수 입력>  ');
+rl.setPrompt('정수 입력> ');
 rl.prompt();
 
 rl.on('line', function(buf){
