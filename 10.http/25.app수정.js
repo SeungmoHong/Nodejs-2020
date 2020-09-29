@@ -27,7 +27,6 @@ http.createServer(function(req, res) {
                 let control = template.buttonGen(title);
                 let filename = 'data/' + title + '.txt';
                 fs.readFile(filename, 'utf8', (error, buffer) => {
-                    buffer = buffer.replace(/\n/g,'<br>');
                     let html = view.index(title, list, buffer, control);
                     res.end(html);
                 });
@@ -52,12 +51,11 @@ http.createServer(function(req, res) {
             let param = qs.parse(body);
             //console.log(param.subject, param.description);
             let filepath = 'data/' + param.subject + '.txt';
-            let encoded = encodeURI(`/?id=${param.subject}`);
             fs.writeFile(filepath, param.description, error => {
-                res.writeHead(302, {'Location': encoded});
+                res.writeHead(302, {'Location': `/?id=${param.subject}`});
                 res.end();
             });
-        });
+        }); 
         break;
     case '/delete':
         fs.readdir('data', function(error, filelist) {
@@ -82,7 +80,7 @@ http.createServer(function(req, res) {
             });
         });
         break;
-    case '/update' : 
+    case '/update':
         fs.readdir('data', function(error, filelist) {
             let list = template.listGen(filelist);
             let title = query.id;
@@ -90,7 +88,7 @@ http.createServer(function(req, res) {
             let filename = 'data/' + title + '.txt';
             fs.readFile(filename, 'utf8', (error, buffer) => {
                 let content = template.updateForm(title, buffer);
-                let html = view.index(`${title}수정`, list, content, control);
+                let html = view.index(`${title} 수정`, list, content, control);
                 res.end(html);
             });
         });
@@ -102,21 +100,20 @@ http.createServer(function(req, res) {
         })
         req.on('end', function() {
             let param = qs.parse(body);
-            //console.log(param.original,param.subject, param.description);
-            let filepath = 'data/' + param.originial + '.txt';
-            let encoded = encodeURI(`/?id=${param.subject}`);
+            //console.log(param.original, param.subject, param.description);
+            let filepath = 'data/' + param.original + '.txt';
             fs.writeFile(filepath, param.description, error => {
-                if(param.originial !== param.subject){
-                    fs.rename(filepath,`data/${param.subject}.txt`, error=>{
-                        res.writeHead(302, {'Location': encoded});
+                if (param.original !== param.subject) {
+                    fs.rename(filepath, `data/${param.subject}.txt`, error => {
+                        res.writeHead(302, {'Location': `/?id=${param.subject}`});
                         res.end();
                     });
-                }else{
-                    res.writeHead(302, {'Location': encoded});
+                } else {
+                    res.writeHead(302, {'Location': `/?id=${param.subject}`});
                     res.end();
                 }
             });
-        });
+        }); 
         break;
     default:
         res.writeHead(404);
@@ -124,4 +121,4 @@ http.createServer(function(req, res) {
     }
 }).listen(3000, () => {
     console.log('Server running at http://localhost:3000');
-}); 
+});
